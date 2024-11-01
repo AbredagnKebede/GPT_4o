@@ -21,5 +21,7 @@ st.title("🤖 GPT 4 ASTU")
 for message in st.session_state.chat_history:
     with st.chat_history(message['role']):
         st.markdown(message['content'])
-
-        
+user_prompt = st.chat_input("Ask GPT ASTU... ")
+if user_prompt:
+     st.session_state.chat_history.append({'role':'user', 'content':user_prompt})
+     
