@@ -30,6 +30,16 @@ if user_prompt:
 respons = openai.chat.copletions.create(
     model = "gpt 3.5",
     message = [
-        {'role': 'system', 'content': "you are my helpful assistant"}
+        {'role': 'system', 'content': "you are my helpful assistant"},
+        *st.session_state.chat_history
     ]
 )
+#storing the model's response or answer 
+assistant_respons = respons.choice[0].message.content
+
+#appending the the respons to our model data
+st.session_state.chat_history.append({'role':'assistant','content':assistant_respons})
+
+#displaying the assistant respons
+with st.chat_message('assistant'):
+    st.markdown(assistant_respons)
