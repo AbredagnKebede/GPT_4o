@@ -27,7 +27,7 @@ if user_prompt:
     st.chat_message.markdown(user_prompt)
     st.session_state.chat_history.append({'role': 'user', 'content': user_prompt})
     
-respons = openai.chat.copletions.create(
+respons = openai.chat.completions.create(
     model = "gpt 3.5",
     message = [
         {'role': 'system', 'content': "you are my helpful assistant"},
