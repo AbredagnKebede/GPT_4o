@@ -6,7 +6,7 @@ try:
   #Make your OpenAI API request here
   response = client.chat.completions.create(
     prompt="Hello world",
-    model="gpt-4o-mini"
+    model="gpt-3.5-turbo"
   )
 except openai.APIError as e:
   #Handle API error here, e.g. retry or log

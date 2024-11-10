@@ -7,7 +7,7 @@ import openai
 #configuring openai api key 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 config_data = json.load(open(f"{working_dir}/config.json"))
-OPENAI_API_KEY = config_data["OPENAI_API_KEY"]
+OPENAI_API_KEY = config_data["OPENAI_API_KEY2"]
 openai.api_key = OPENAI_API_KEY
 
 #configuring streamlit page setting 
@@ -27,8 +27,9 @@ for message in st.session_state.chat_history:
         st.markdown(message['content'])
 
 #input field for users    
-user_prompt = st.chat_input("Ask GPT ASTU... ")
-page_intro = "This is a simulation of chat gpt 4 using pretrained OPENAI mode provided by openai. Model simulation was built by Abredagn Kebede, thrid year software student as ASTU"
+page_intro = "This is a simulation of chat gpt 4 using pretrained OPENAI mode provided by openai. Model simulation was built by Abredagn Kebede, thrid year software student at ASTU."
+user_prompt = st.chat_input(page_intro + " Ask GPT ASTU... ")
+
 
 if user_prompt:
     #add user message and display it
@@ -36,7 +37,7 @@ if user_prompt:
     st.session_state.chat_history.append({'role': 'user', 'content': user_prompt})
     
     response = openai.chat.completions.create(
-        model = "gpt-4o-mini",
+        model = "gpt-3.5-turbo",
         messages = [
             {'role': 'system', 'content': "You are my helpful assistant"},
             *st.session_state.chat_history
@@ -52,5 +53,3 @@ if user_prompt:
     #displaying the assistant respons
     with st.chat_message('assistant'):
         st.markdown(assistant_response)
-else:
-    print(page_intro)
